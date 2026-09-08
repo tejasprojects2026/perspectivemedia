@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Dialog, DialogTrigger, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import {
   ArrowRight,
   Sparkles,
@@ -21,7 +22,6 @@ import {
   MessageCircle,
   Mail,
   Phone,
-  MapPin,
   Quote,
   Globe,
   Share2,
@@ -52,17 +52,27 @@ const stats = [
 const clientLogoIndexes = [...Array.from({ length: 21 }, (_, index) => index + 1), 23];
 const clientLogos = clientLogoIndexes.map((index) => ({
   src: `/client-logos/logo-${String(index).padStart(2, "0")}.png`,
-  alt: `Perspective Media Labs client logo ${index}`,
+  alt: index === 7 ? "Fuelcats India Pvt Ltd" : `Perspective Media Labs client logo ${index}`,
+  darkBackground: index === 7,
 }));
 
 const services = [
-  { icon: Compass, title: "Strategy and Positioning", desc: "Sharpen who you are, who you're for, and why you win — before we spend a rupee." },
-  { icon: Palette, title: "Brand and Design", desc: "Identity, decks, brochures, stationery, and packaging — designed by specialists, owned by us." },
+  { icon: Compass, title: "Strategy and Positioning", desc: "Sharpen who you are, who you're for, and why you win - before we spend a rupee." },
+  { icon: Palette, title: "Brand and Design", desc: "Identity, decks, brochures, stationery, and packaging - designed by specialists, owned by us." },
   { icon: PenLine, title: "Content and Copy", desc: "Weekly content engines that sound like you, not like every other brand on the feed." },
-  { icon: Share2, title: "Social Media and Performance", desc: "Organic to paid — content calendars, community management, and Meta, Google, LinkedIn campaigns under one roof." },
-  { icon: Globe, title: "Website and Digital Presence", desc: "Landing pages, business websites, GMB, and SEO — one brief, one owner, one finished product." },
-  { icon: Bot, title: "AI Automations and Reporting", desc: "Lead capture, WhatsApp automation, CRM hygiene, and monthly reports — One dashboard, one story." },
+  { icon: Share2, title: "Social Media and Performance", desc: "Organic to paid - content calendars, community management, and Meta, Google, LinkedIn campaigns under one roof." },
+  { icon: Globe, title: "Website and Digital Presence", desc: "Landing pages, business websites, GMB, and SEO - one brief, one owner, one finished product." },
+  { icon: Bot, title: "AI Automations and Reporting", desc: "Lead capture, WhatsApp automation, CRM hygiene, and monthly reports - One dashboard, one story." },
 ];
+
+const serviceDetails: Record<string, string[]> = {
+  "Strategy and Positioning": ["Understand your audience, competitors, and market opportunities.", "Define your positioning, key messages, and brand voice.", "Build a practical marketing roadmap around your business goals."],
+  "Brand and Design": ["Create a consistent visual identity across your brand touchpoints.", "Design pitch decks, brochures, stationery, and packaging.", "Coordinate specialist designers through one accountable point of contact."],
+  "Content and Copy": ["Plan content themes and a regular publishing calendar.", "Write website copy, social posts, and campaign messaging in your brand voice.", "Keep content consistent with your audience and marketing goals."],
+  "Social Media and Performance": ["Plan and manage organic content and community conversations.", "Build paid campaigns across Meta, Google, and LinkedIn.", "Review creative and campaign performance to guide ongoing improvements."],
+  "Website and Digital Presence": ["Create landing pages and business websites with clear customer journeys.", "Improve your Google Business Profile and search visibility.", "Coordinate copy, design, and development from brief to launch."],
+  "AI Automations and Reporting": ["Connect lead capture and WhatsApp follow-ups to your workflow.", "Organise CRM data and automate repetitive marketing tasks.", "Bring key results into a clear dashboard and monthly report."],
+};
 
 const cases = [
   { img: case1, tag: "D2C Beauty", industry: "Beauty & Personal Care", title: "Loveska Skincare", scope: "Full-funnel rebuild and creative testing loop across paid social and lifecycle.", metric: "3.2× ROAS in 90 days", note: "Rebuilt funnel + creative testing loop", stats: [{ v: "3.2×", l: "ROAS in 90 days" }, { v: "90 days", l: "End-to-end rebuild" }, { v: "Full funnel", l: "Awareness to retention" }] },
@@ -113,20 +123,20 @@ const compare = [
 
 const testimonials = [
   { name: "Ananya Rao", role: "Founder, Loveska", initials: "AR", quote: "It felt less like hiring an agency and more like getting a CMO on speed dial. The reporting alone saved us 6 hours a week." },
-  { name: "Rohit Menon", role: "CEO, Metryx", initials: "RM", quote: "They understood our SaaS funnel in one call. Two months in, our CAC is half of what it was — with better leads." },
+  { name: "Rohit Menon", role: "CEO, Metryx", initials: "RM", quote: "They understood our SaaS funnel in one call. Two months in, our CAC is half of what it was - with better leads." },
   { name: "Sneha Kulkarni", role: "Marketing Head, Cofact", initials: "SK", quote: "Fresh, bold, and refreshingly honest. They kill bad ideas fast so the good ones get real budget." },
   { name: "Vikram Shah", role: "Co-founder, Payloop", initials: "VS", quote: "The AI automations they set up quietly run our lead ops. It's the most leverage we've ever gotten from a marketing partner." },
 ];
 
 const values = [
-  { icon: Eye, title: "Vision", text: "Make world-class marketing accessible to every Indian MSME — not just the funded few." },
-  { icon: Flag, title: "Mission", text: "Be the concierge that founders trust to think, execute, and report — where the right tools quietly do what tools should, so your concierge can focus on what actually matters." },
+  { icon: Eye, title: "Vision", text: "Make world-class marketing accessible to every Indian MSME - not just the funded few." },
+  { icon: Flag, title: "Mission", text: "Be the concierge that founders trust to think, execute, and report - where the right tools quietly do what tools should, so your concierge can focus on what actually matters." },
   { icon: Heart, title: "Values", text: "Honesty over hype. Craft over volume. Outcomes over optics. Long games over quick wins." },
 ];
 
 const approach = [
-  { word: "Perspective", desc: "We start where every good strategy starts — understanding your business, your customer, and your market from the inside out." },
-  { word: "Media", desc: "Then we build the channels, creative, and campaigns that actually move the needle — not vanity metrics." },
+  { word: "Perspective", desc: "We start where every good strategy starts - understanding your business, your customer, and your market from the inside out." },
+  { word: "Media", desc: "Then we build the channels, creative, and campaigns that actually move the needle - not vanity metrics." },
   { word: "Labs", desc: "We use smart tools and automation to measure, iterate, and improve everything quietly in the background. Nothing runs blind. Everything runs better." },
 ];
 
@@ -140,11 +150,11 @@ function LandingPage() {
       <StatsBar />
       <Clientele />
       <Services />
+      <Values />
       <Comparison />
       <Savings />
       <Approach />
       <Portfolio />
-      <Values />
       <Testimonials />
       <Founder />
       <ContactSection />
@@ -206,7 +216,7 @@ function Hero() {
             <span className="block italic text-primary-deep">like it's yours.</span>
           </h1>
           <p className="mt-6 text-lg text-navy-soft max-w-xl leading-relaxed">
-            One senior concierge. Smarter tools doing the heavy lifting. A partner that thinks like a founder, ships like an operator, and reports like a CFO — built for Indian MSMEs and startups.
+            One senior concierge. Smarter tools doing the heavy lifting. A partner that thinks like a founder, ships like an operator, and reports like a CFO - built for Indian MSMEs and startups.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#contact" className="btn-primary">Start with a free audit <ArrowRight className="w-4 h-4" /></a>
@@ -281,7 +291,7 @@ function Clientele() {
         <div className="flex items-center gap-8 animate-marquee whitespace-nowrap w-max">
           {[...clientLogos, ...clientLogos].map((logo, i) => (
             <div key={`${logo.src}-${i}`} className="flex h-36 w-72 shrink-0 items-center justify-center">
-              <img src={logo.src} alt={logo.alt} className="h-32 w-64 object-contain mix-blend-multiply transition-transform hover:scale-105" loading="lazy" />
+              <img src={logo.src} alt={logo.alt} className={`h-32 w-64 object-contain transition-transform hover:scale-105 ${logo.darkBackground ? "rounded-xl bg-navy p-3" : "mix-blend-multiply"}`} loading="lazy" />
             </div>
           ))}
         </div>
@@ -299,21 +309,52 @@ function Services() {
         <div className="max-w-2xl">
           <span className="eyebrow">What we do</span>
           <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold text-navy">One concierge. Six capabilities. Zero handoffs.</h2>
-          <p className="mt-4 text-navy-soft text-lg">Everything a modern marketing team does — folded into one senior relationship, briefed and delivered by us.</p>
+          <p className="mt-4 text-navy-soft text-lg">Everything a modern marketing team does - folded into one senior relationship, briefed and delivered by us.</p>
         </div>
         <div className="mt-14 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((s) => (
-            <div key={s.title} className="card-elevated p-8">
+            <div key={s.title} className="card-elevated p-8 flex flex-col items-start">
               <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-deep grid place-items-center text-primary-foreground">
                 <s.icon className="w-6 h-6" />
               </div>
               <h3 className="mt-6 font-serif text-xl font-semibold text-navy">{s.title}</h3>
-              <p className="mt-2 text-navy-soft leading-relaxed">{s.desc}</p>
+              <p className="mt-2 flex-1 text-navy-soft leading-relaxed">{s.desc}</p>
+              <Dialog>
+                <DialogTrigger asChild>
+                  <button type="button" className="mt-6 self-center md:self-start inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary-deep transition-colors hover:bg-primary-deep hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 cursor-pointer" aria-label={`Know more about ${s.title}`}>
+                    Know more <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </button>
+                </DialogTrigger>
+                <DialogContent className="w-[calc(100%-2rem)] max-w-md max-h-[85dvh] overflow-y-auto rounded-2xl sm:rounded-2xl border-primary/20 bg-card p-6 sm:p-8">
+                  <img
+                    src="/pml-logo-mark.svg"
+                    alt=""
+                    aria-hidden="true"
+                    draggable={false}
+                    className="pointer-events-none absolute left-1/2 top-1/2 h-auto w-3/5 max-w-64 -translate-x-1/2 -translate-y-1/2 select-none opacity-[0.045]"
+                  />
+                  <div className="relative w-12 h-12 rounded-xl bg-gradient-to-br from-primary to-primary-deep grid place-items-center text-primary-foreground">
+                    <s.icon className="w-6 h-6" aria-hidden="true" />
+                  </div>
+                  <DialogHeader className="relative text-left">
+                    <DialogTitle className="font-serif text-2xl leading-tight text-navy">{s.title}</DialogTitle>
+                    <DialogDescription className="pt-2 text-navy-soft leading-relaxed">{s.desc}</DialogDescription>
+                  </DialogHeader>
+                  <ul className="relative space-y-3 border-t border-border pt-4">
+                    {serviceDetails[s.title].map((detail) => (
+                      <li key={detail} className="flex gap-3 text-sm leading-relaxed text-navy-soft">
+                        <Check className="mt-1 h-4 w-4 shrink-0 text-primary-deep" aria-hidden="true" />
+                        <span>{detail}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </DialogContent>
+              </Dialog>
             </div>
           ))}
         </div>
         <p className="mt-8 text-sm text-muted-foreground max-w-3xl">
-          Creative work across design, print, web, and video is executed through our curated network of vetted specialists — briefed, managed, and reported by us. You pay actuals. Always.
+          Creative work across design, print, web, and video is executed through our curated network of vetted specialists - briefed, managed, and reported by us. You pay actuals. Always.
         </p>
       </div>
     </section>
@@ -329,7 +370,7 @@ function Comparison() {
         <div className="max-w-2xl">
           <span className="eyebrow">The concierge model</span>
           <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold text-navy">Not a hire. Not an agency. Something better.</h2>
-          <p className="mt-4 text-navy-soft text-lg">A smarter way to run marketing — less overhead, more ownership, real outcomes.</p>
+          <p className="mt-4 text-navy-soft text-lg">A smarter way to run marketing - less overhead, more ownership, real outcomes.</p>
         </div>
 
         <div className="mt-14 grid lg:grid-cols-[1.1fr_1.1fr_1.4fr] gap-6">
@@ -385,7 +426,7 @@ function Savings() {
         <div className="max-w-2xl">
           <span className="eyebrow">Time & cost</span>
           <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold">Founder time is the real budget.</h2>
-          <p className="mt-4 text-white/70 text-lg">We measure success not just in ROAS — but in the hours we hand back to you.</p>
+          <p className="mt-4 text-white/70 text-lg">We measure success not just in ROAS - but in the hours we hand back to you.</p>
         </div>
         <div className="mt-14 grid md:grid-cols-3 gap-6">
           {items.map((i) => (
@@ -430,6 +471,7 @@ function Approach() {
 /* ---------- Portfolio ---------- */
 
 function Portfolio() {
+  const [mobileCard, setMobileCard] = useState(0);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const active = openIdx !== null ? cases[openIdx] : null;
 
@@ -467,7 +509,7 @@ function Portfolio() {
               key={c.title}
               type="button"
               onClick={() => setOpenIdx(i)}
-              className="group card-elevated overflow-hidden text-left w-full"
+              className={`group card-elevated overflow-hidden text-left w-full min-w-0 ${i === mobileCard ? "block" : "hidden md:block"}`}
             >
               <div className="aspect-[4/3] overflow-hidden">
                 <img src={c.img} alt={c.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
@@ -481,6 +523,16 @@ function Portfolio() {
             </button>
           ))}
         </div>
+      </div>
+
+      <div className="container-page mt-6 flex items-center justify-between gap-4 md:hidden" aria-label="Work card navigation">
+        <button type="button" onClick={() => setMobileCard((index) => (index - 1 + cases.length) % cases.length)} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-primary/10 px-4 text-sm font-semibold text-primary-deep hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          <ArrowRight className="h-4 w-4 rotate-180" aria-hidden="true" /> Previous
+        </button>
+        <span className="text-sm text-navy-soft" aria-live="polite" aria-atomic="true">{mobileCard + 1} / {cases.length}</span>
+        <button type="button" onClick={() => setMobileCard((index) => (index + 1) % cases.length)} className="inline-flex min-h-11 items-center gap-2 rounded-full bg-primary/10 px-4 text-sm font-semibold text-primary-deep hover:bg-primary/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary">
+          Next <ArrowRight className="h-4 w-4" aria-hidden="true" />
+        </button>
       </div>
 
       {active && (
@@ -541,7 +593,7 @@ function Portfolio() {
               <div>
                 <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">The challenge</div>
                 <p className="mt-2 text-navy-soft leading-relaxed">
-                  The brand needed a complete repositioning before any media spend made sense. We started with a communication audit — mapping the gap between how the team talked about the product and how customers actually described it. The findings pointed to a positioning mismatch that was quietly draining every campaign of efficiency.
+                  The brand needed a complete repositioning before any media spend made sense. We started with a communication audit - mapping the gap between how the team talked about the product and how customers actually described it. The findings pointed to a positioning mismatch that was quietly draining every campaign of efficiency.
                 </p>
               </div>
               <div>
@@ -646,11 +698,11 @@ function Founder() {
             After half a decade running growth for D2C brands, SaaS startups, and traditional MSMEs across India, Tejas kept hearing the same story: agencies were too generic, hiring was too slow, and modern tooling was too intimidating to figure out alone.
           </p>
           <p className="mt-4 text-lg text-navy-soft leading-relaxed text-justify">
-            Perspective Media Labs is his answer — a concierge for founders who want the outcomes of a full marketing team without the overhead of one.
+            Perspective Media Labs is his answer - a concierge for founders who want the outcomes of a full marketing team without the overhead of one.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#contact" className="btn-primary text-sm">Talk to Tejas <ArrowRight className="w-4 h-4" /></a>
-            <a href="https://wa.me/919999999999" target="_blank" rel="noreferrer" className="btn-ghost text-sm">WhatsApp <MessageCircle className="w-4 h-4" /></a>
+            <a href="https://wa.me/918668411092" target="_blank" rel="noreferrer" className="btn-ghost text-sm">WhatsApp <MessageCircle className="w-4 h-4" /></a>
           </div>
         </div>
       </div>
@@ -662,45 +714,79 @@ function Founder() {
 
 function ContactSection() {
   const [sent, setSent] = useState(false);
+  const formRef = useRef<HTMLFormElement>(null);
+
+  useEffect(() => {
+    let frame: number;
+    const resetForm = () => {
+      formRef.current?.reset();
+      setSent(false);
+      frame = requestAnimationFrame(() => formRef.current?.reset());
+    };
+    resetForm();
+    window.addEventListener("pageshow", resetForm);
+    return () => {
+      cancelAnimationFrame(frame);
+      window.removeEventListener("pageshow", resetForm);
+    };
+  }, []);
   return (
     <section id="contact" className="py-24 bg-navy text-primary-foreground relative overflow-hidden">
       <div aria-hidden className="absolute inset-0 opacity-40" style={{ background: "radial-gradient(700px 400px at 100% 0%, oklch(0.66 0.11 210 / 0.5), transparent 60%)" }} />
       <div className="container-page relative grid md:grid-cols-12 gap-12">
-        <div className="md:col-span-5">
+        <div className="md:col-span-5 flex min-w-0 flex-col items-start">
           <span className="eyebrow"><Target className="w-3.5 h-3.5" /> Start the conversation</span>
           <h2 className="mt-4 font-serif text-4xl md:text-5xl font-semibold">Let's map your first 90 days.</h2>
           <p className="mt-4 text-white/70 text-lg">Free 30-minute audit. No pitch deck. Just a real look at what's working, what isn't, and what one concierge could unlock.</p>
           <ul className="mt-8 space-y-4 text-white/85">
-            <li className="flex items-center gap-3"><Mail className="w-5 h-5 text-primary" /> hello@perspectivemedialabs.in</li>
-            <li className="flex items-center gap-3"><Phone className="w-5 h-5 text-primary" /> +91 99999 99999</li>
-            <li className="flex items-center gap-3"><MapPin className="w-5 h-5 text-primary" /> Pune · Mumbai · Bengaluru</li>
+            <li className="flex items-center gap-3"><Mail className="w-5 h-5 text-primary" /> connect@perspectivemedialabs.com</li>
+            <li className="flex items-center gap-3"><Phone className="w-5 h-5 text-primary" /> +91 8668411092</li>
           </ul>
+          <div className="relative mt-6 aspect-square w-full overflow-hidden rounded-2xl border border-white/15 bg-white/5 md:aspect-auto md:min-h-24 md:flex-1">
+            <iframe
+              title="Perspective Media Labs location on Google Maps"
+              src="https://maps.google.com/maps?q=18.6441317,73.8501899&z=16&output=embed"
+              className="absolute inset-0 block h-full w-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </div>
         </div>
         <form
+          ref={formRef}
+          autoComplete="off"
           onSubmit={(e) => { e.preventDefault(); setSent(true); }}
-          className="md:col-span-7 bg-white/[0.04] backdrop-blur border border-white/10 rounded-3xl p-8 space-y-5"
+          className="md:col-span-7 self-start bg-white/[0.04] backdrop-blur border border-white/10 rounded-3xl p-8 pb-6 space-y-5"
         >
           <div className="grid md:grid-cols-2 gap-5">
-            <Field label="Your name" name="name" placeholder="Tejas Rokhade" />
-            <Field label="Work email" name="email" type="email" placeholder="you@company.com" />
-            <Field label="Company" name="company" placeholder="Company name" />
-            <Field label="Phone" name="phone" placeholder="+91 99999 99999" />
+            <Field label="Your name" name="name" placeholder="Enter your full name" />
+            <Field label="Work email" name="email" type="email" placeholder="Enter your work email" />
+            <Field label="Company" name="company" placeholder="Enter your company name" />
+            <Field label="Phone" name="phone" placeholder="Enter your phone number" />
           </div>
           <div>
             <label className="text-xs font-semibold uppercase tracking-widest text-white/70">What do you need help with?</label>
             <textarea
               name="message"
+              autoComplete="off"
               rows={4}
-              placeholder="A short description of where you are and where you'd like to be."
+              placeholder="Tell us how we can help your business"
               className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-primary-foreground placeholder:text-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
             />
           </div>
+          <label className="flex items-start gap-3 px-4 text-sm leading-relaxed text-white/80 cursor-pointer">
+            <input
+              type="checkbox"
+              name="termsAccepted"
+              required
+              className="mt-1 h-4 w-4 shrink-0 accent-primary cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-navy"
+            />
+            <span>By submitting this form, I agree to the Terms and Conditions and consent to being contacted by Perspective Media Labs regarding my enquiry.</span>
+          </label>
           <button type="submit" className="btn-primary w-full sm:w-auto">
-            {sent ? "Thanks — we'll be in touch" : (<>Request my free audit <ArrowRight className="w-4 h-4" /></>)}
+            {sent ? "Thanks - we'll be in touch" : (<>Request my free audit <ArrowRight className="w-4 h-4" /></>)}
           </button>
-          <p className="text-xs text-white/60 leading-relaxed max-w-xl">
-            Priced for growing businesses — not agency budgets. Less than a single month of a typical agency retainer, for a full year of strategic partnership. We discuss investment after we understand your business.
-          </p>
         </form>
       </div>
     </section>
@@ -715,6 +801,7 @@ function Field({ label, name, type = "text", placeholder }: { label: string; nam
         id={name}
         name={name}
         type={type}
+        autoComplete="off"
         placeholder={placeholder}
         className="mt-2 w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-primary-foreground placeholder:text-white/40 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30"
       />
@@ -735,7 +822,7 @@ function Footer() {
               <div className="font-semibold text-navy">Perspective Media Labs</div>
             </div>
           </div>
-          <p className="mt-4 text-sm text-navy-soft max-w-sm">Marketing that feels like it's yours — strategy-led, run by a senior operator, built for Indian MSMEs.</p>
+          <p className="mt-4 text-sm text-navy-soft max-w-sm">Marketing that feels like it's yours - strategy-led, run by a senior operator, built for Indian MSMEs.</p>
         </div>
         <div>
           <div className="text-xs uppercase tracking-widest text-muted-foreground">Explore</div>
@@ -749,9 +836,8 @@ function Footer() {
         <div>
           <div className="text-xs uppercase tracking-widest text-muted-foreground">Get in touch</div>
           <ul className="mt-3 space-y-2 text-sm text-navy">
-            <li>hello@perspectivemedialabs.in</li>
-            <li>+91 99999 99999</li>
-            <li>Pune · Mumbai · Bengaluru</li>
+            <li>connect@perspectivemedialabs.com</li>
+            <li>+91 8668411092</li>
           </ul>
         </div>
       </div>
@@ -768,7 +854,7 @@ function Footer() {
 function WhatsAppWidget() {
   return (
     <a
-      href="https://wa.me/919999999999"
+      href="https://wa.me/918668411092"
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
