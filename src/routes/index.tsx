@@ -29,8 +29,6 @@ import {
 
 import founderImg from "@/assets/founder-tejas.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
-import case1 from "@/assets/case-1.jpg";
-import case2 from "@/assets/case-2.jpg";
 import case3 from "@/assets/case-3.jpg";
 import case4 from "@/assets/case-4.jpg";
 import case5 from "@/assets/case-5.jpg";
@@ -75,12 +73,26 @@ const serviceDetails: Record<string, string[]> = {
 };
 
 const cases = [
-  { img: case1, tag: "D2C Beauty", industry: "Beauty & Personal Care", title: "Loveska Skincare", scope: "Full-funnel rebuild and creative testing loop across paid social and lifecycle.", metric: "3.2× ROAS in 90 days", note: "Rebuilt funnel + creative testing loop", stats: [{ v: "3.2×", l: "ROAS in 90 days" }, { v: "90 days", l: "End-to-end rebuild" }, { v: "Full funnel", l: "Awareness to retention" }] },
-  { img: case2, tag: "B2B SaaS", industry: "B2B SaaS", title: "Metryx Analytics", scope: "Account-based LinkedIn program plus intent-driven nurture for enterprise pipeline.", metric: "60% cheaper qualified leads", note: "LinkedIn ABM + intent-based nurture", stats: [{ v: "60%", l: "Lower cost per SQL" }, { v: "120 days", l: "Program build" }, { v: "ABM", l: "Full-cycle GTM motion" }] },
+  { img: "/case-ekvira-export-fit.png", tag: "Import Export Trade", industry: "Import Export Trade", title: "Ekvira Export House Pvt. Ltd.", scope: "Full brand, digital, and print communication built from zero for a new Indian merchant export trading firm.", metric: "Full brand, digital, and print communication built from zero", note: "for a new Indian merchant export trading firm.", stats: [{ v: "$15,000", l: "First B2B order value from a single Meta lead" }, { v: "₹224", l: "Average cost per lead — international B2B campaigns" }, { v: "$60,000+", l: "Estimated pipeline value built from qualified leads" }] },
+  { img: "/case-metryx-impact.png", tag: "Civil Infrastructure", industry: "Civil Infrastructure", title: "Impact Infraheights Pvt Ltd", scope: "Digital revival for a Pune civil engineering firm — brand, website, brochure, social media, and GMB.", metric: "60% cheaper qualified leads", note: "LinkedIn ABM + intent-based nurture", stats: [{ v: "59,731", l: "LinkedIn impressions generated in 12 months — organic, zero ad spend" }, { v: "+228.6%", l: "GMB growth year on year — real business intent, not vanity numbers" }, { v: "45K+", l: "Combined Meta organic reach — Facebook + Instagram in 10 months" }] },
   { img: case3, tag: "F&B", industry: "Food & Beverage", title: "Cofact Cafés", scope: "Local SEO, creator-led launches, and community-first content across 12 cities.", metric: "12 cities, 40k community", note: "Local SEO + creator-led launches", stats: [{ v: "12 cities", l: "Simultaneous launches" }, { v: "40k+", l: "Community members" }, { v: "Local SEO", l: "Creator-led rollout" }] },
   { img: case4, tag: "Fintech", industry: "Consumer Fintech", title: "Payloop", scope: "Full-funnel performance and app-store optimization for consumer fintech growth.", metric: "5× app installs QoQ", note: "Full-funnel performance + ASO", stats: [{ v: "5×", l: "App installs QoQ" }, { v: "60 days", l: "Optimization sprint" }, { v: "Full funnel", l: "Paid + ASO + lifecycle" }] },
   { img: case5, tag: "Manufacturing", industry: "Industrial Manufacturing", title: "Shreyas Industries", scope: "Technical SEO overhaul and long-form industrial content engine for B2B buyers.", metric: "1st page for 27 keywords", note: "Technical SEO + industrial content", stats: [{ v: "27", l: "Page-one keywords" }, { v: "180 days", l: "SEO program" }, { v: "Technical SEO", l: "Plus content engine" }] },
   { img: case6, tag: "Fashion D2C", industry: "Fashion & Apparel", title: "Onward Studios", scope: "Retention automation and email/SMS lifecycle for a repeat-purchase D2C brand.", metric: "42% repeat purchase rate", note: "Retention automation + email flows", stats: [{ v: "42%", l: "Repeat purchase rate" }, { v: "90 days", l: "Lifecycle rebuild" }, { v: "Retention", l: "Email + SMS automation" }] },
+];
+
+const ekviraScreenshots = [
+  { src: "/ekvira-logo.png", alt: "Ekvira Export House logo" },
+  { src: "/ekvira-products-page.png", alt: "Ekvira Export House products page" },
+  { src: "/ekvira-export-process.png", alt: "Ekvira Export House export process page" },
+  { src: "/ekvira-about-page.png", alt: "Ekvira Export House about page" },
+];
+
+const impactScreenshots = [
+  { src: "/impact-infraheights-logo.png", alt: "Impact Infraheights Pvt Ltd logo" },
+  { src: "/impact-proof-excellence.png", alt: "Impact Infraheights proven excellence" },
+  { src: "/impact-md-profile.png", alt: "Impact Infraheights managing director profile" },
+  { src: "/impact-projects.png", alt: "Impact Infraheights project categories" },
 ];
 
 const compare = [
@@ -208,21 +220,21 @@ function Hero() {
         className="absolute inset-0 opacity-40 pointer-events-none"
         style={{ backgroundImage: `url(${heroBg})`, backgroundSize: "cover", backgroundPosition: "right center", maskImage: "linear-gradient(to left, black, transparent 70%)" }}
       />
-      <div className="container-page relative py-24 md:py-32 grid md:grid-cols-12 gap-10 items-center">
-        <div className="md:col-span-7 animate-fade-up">
-          <span className="eyebrow"><Sparkles className="w-3.5 h-3.5" /> India's marketing concierge for growing businesses</span>
-          <h1 className="mt-6 font-serif text-5xl md:text-7xl font-semibold text-navy leading-[1.02]">
+      <div className="container-page relative pt-5 pb-24 md:pt-12 md:pb-32 grid md:grid-cols-12 gap-10 items-center">
+        <div className="md:col-span-7 animate-fade-up text-center md:text-left">
+          <span className="eyebrow"><Sparkles className="w-3.5 h-3.5 shrink-0" /> India's marketing concierge for growing businesses</span>
+          <h1 className="mt-4 md:mt-6 font-serif text-5xl md:text-7xl font-semibold text-navy leading-[1.02]">
             Marketing that runs
             <span className="block italic text-primary-deep">like it's yours.</span>
           </h1>
-          <p className="mt-6 text-lg text-navy-soft max-w-xl leading-relaxed">
+          <p className="mt-6 text-lg text-navy-soft max-w-xl leading-relaxed text-justify md:text-left">
             One senior concierge. Smarter tools doing the heavy lifting. A partner that thinks like a founder, ships like an operator, and reports like a CFO - built for Indian MSMEs and startups.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
+          <div className="mt-8 flex flex-wrap justify-center md:justify-start gap-3">
             <a href="#contact" className="btn-primary">Start with a free audit <ArrowRight className="w-4 h-4" /></a>
             <a href="#work" className="btn-ghost">See our work</a>
           </div>
-          <div className="mt-10 flex items-center gap-4 text-sm text-muted-foreground">
+          <div className="mt-10 flex flex-col md:flex-row items-center gap-4 text-sm text-muted-foreground">
             <div className="flex -space-x-2">
               {["A", "R", "S", "V"].map((c) => (
                 <div key={c} className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary-deep text-primary-foreground grid place-items-center text-xs font-semibold ring-2 ring-background">{c}</div>
@@ -474,6 +486,7 @@ function Portfolio() {
   const [mobileCard, setMobileCard] = useState(0);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const active = openIdx !== null ? cases[openIdx] : null;
+  const activeScreenshots = active?.title === "Ekvira Export House Pvt. Ltd." ? ekviraScreenshots : active?.title === "Impact Infraheights Pvt Ltd" ? impactScreenshots : null;
 
   useEffect(() => {
     if (active) {
@@ -509,16 +522,25 @@ function Portfolio() {
               key={c.title}
               type="button"
               onClick={() => setOpenIdx(i)}
-              className={`group card-elevated overflow-hidden text-left w-full min-w-0 ${i === mobileCard ? "block" : "hidden md:block"}`}
+              style={i < 2 ? { display: "block", margin: 0, padding: 0, verticalAlign: "top", backgroundImage: `url(${c.img})`, backgroundPosition: "top center", backgroundRepeat: "no-repeat", backgroundSize: "100% auto" } : undefined}
+              className={`group card-elevated self-start overflow-hidden p-0 align-top text-left w-full min-w-0 ${i === mobileCard ? "block" : "hidden md:block"}`}
             >
-              <div className="aspect-[4/3] overflow-hidden">
-                <img src={c.img} alt={c.title} loading="lazy" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
-              </div>
-              <div className="p-6">
+              {i < 2 ? (
+                <div aria-hidden="true" className="w-full" style={{ aspectRatio: "1896 / 882" }} />
+              ) : (
+                <img src={c.img} alt={c.title} loading="lazy" className="block w-full object-cover aspect-[4/3] transition-transform duration-500 group-hover:scale-105" />
+              )}
+              <div className="px-6 py-4">
                 <div className="text-xs font-semibold uppercase tracking-widest text-primary-deep">{c.tag}</div>
                 <h3 className="mt-2 font-serif text-xl font-semibold text-navy">{c.title}</h3>
-                <div className="mt-3 font-serif text-2xl font-semibold text-navy">{c.metric}</div>
-                <p className="mt-1 text-sm text-navy-soft">{c.note}</p>
+                {i < 2 ? (
+                  <p className="mt-3 text-base leading-relaxed text-navy-soft">{i === 0 ? `${c.metric} ${c.note}` : c.scope}</p>
+                ) : (
+                  <>
+                    <div className="mt-3 font-serif text-2xl font-semibold text-navy">{c.metric}</div>
+                    <p className="mt-1 text-sm text-navy-soft">{c.note}</p>
+                  </>
+                )}
               </div>
             </button>
           ))}
@@ -566,12 +588,22 @@ function Portfolio() {
 
             <div className="p-8 md:p-10 border-b border-border">
               <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">Platform screenshots</div>
-              <div className="flex gap-4 overflow-x-auto pb-2 -mx-2 px-2">
-                {[1, 2, 3, 4].map((n) => (
+              <div className="flex gap-4 overflow-x-auto pb-2 -mx-2 px-2 snap-x snap-mandatory">
+                {activeScreenshots ? activeScreenshots.map((screenshot, index) => (
                   <div
-                    key={n}
-                    className="shrink-0 w-72 h-44 rounded-2xl bg-gradient-to-br from-surface to-accent/40 border border-border grid place-items-center text-sm text-muted-foreground"
+                    key={screenshot.src}
+      className={`shrink-0 w-72 md:w-80 overflow-hidden rounded-2xl border border-border snap-start ${active?.title === "Ekvira Export House Pvt. Ltd." && index === 0 ? "bg-[#ffb719]" : active?.title === "Impact Infraheights Pvt Ltd" && index === 0 ? "bg-white" : "bg-surface"}`}
+                    style={{ aspectRatio: "16 / 9" }}
                   >
+                    <img
+                      src={screenshot.src}
+                      alt={screenshot.alt}
+                      loading="lazy"
+                      className="block h-full w-full object-contain"
+                    />
+                  </div>
+                )) : [1, 2, 3, 4].map((n) => (
+                  <div key={n} className="shrink-0 w-72 h-44 rounded-2xl bg-gradient-to-br from-surface to-accent/40 border border-border grid place-items-center text-sm text-muted-foreground">
                     Platform screenshot {n}
                   </div>
                 ))}
@@ -589,18 +621,62 @@ function Portfolio() {
               </div>
             </div>
 
-            <div className="p-8 md:p-10 border-b border-border space-y-4">
-              <div>
+            <div className="p-8 md:p-10 border-b border-border space-y-8">
+              {active.title === "Impact Infraheights Pvt Ltd" && (
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">The challenge</div>
+                  <p className="mt-2 text-navy-soft leading-relaxed text-justify">
+                    Impact Infraheights Pvt Ltd had the credentials of a serious civil engineering and contracting firm but a digital presence that did not reflect it. Social media accounts existed but were inconsistent and visually outdated. The Google Business Profile was barely set up. The website needed ownership. There were no printed or digital brand assets worthy of client or expo-facing use. The business needed a single strategic communication partner to take over everything - from domain management to content - so leadership could stay focused on delivering projects.
+                  </p>
+                </div>
+              )}
+              <div className={active.title === "Impact Infraheights Pvt Ltd" ? "hidden" : ""}>
                 <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">The challenge</div>
-                <p className="mt-2 text-navy-soft leading-relaxed">
-                  The brand needed a complete repositioning before any media spend made sense. We started with a communication audit - mapping the gap between how the team talked about the product and how customers actually described it. The findings pointed to a positioning mismatch that was quietly draining every campaign of efficiency.
+                <p className="mt-2 text-navy-soft leading-relaxed text-justify sm:text-left">
+                  Ekvira Export House launched with zero brand infrastructure — no website, no positioning, no collateral. As a merchant trader, not a manufacturer, the firm needed communication that accurately represented its model while building credibility with experienced international buyers across the Middle East, UK, Australia, and beyond. Everything had to be built correctly from scratch, simultaneously, on a startup budget.
                 </p>
               </div>
-              <div>
+              {active.title === "Impact Infraheights Pvt Ltd" && (
+                <div>
+                  <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">What we did</div>
+                  <div className="mt-4 space-y-6">
+                    <p className="text-navy-soft leading-relaxed text-justify">
+                      Perspective Media Labs took full charge as a marketing concierge partner - handling brand communication end to end across every touchpoint. We revived and rebranded their presence across LinkedIn, Facebook, Instagram, and Google Business Profile - updating information, writing bios, building posting cadence, and managing the MD's personal LinkedIn handle alongside the firm page. We designed a professional digital and printed brochure, executed a project site photo shoot, and produced a three-fold brochure for their participation in MEA Expo, Pune. We managed the website, handled domain and email hosting, and updated all listing platforms including JustDial and AmbitionBox. Google reviews grew to 85+ with a consistent positive sentiment. The team at Impact Infraheights focused on building. We handled everything else.
+                    </p>
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Services tags</div>
+                      <p className="mt-2 text-navy-soft leading-relaxed text-justify">
+                        Social Media, Content Strategy, GMB Optimization, Creative Direction, Corporate Communication, LinkedIn Strategy, Website Direction, Brand Strategy
+                      </p>
+                    </div>
+                    <div>
+                      <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">SEO meta description</div>
+                      <p className="mt-2 text-navy-soft leading-relaxed text-justify">
+                        How Perspective Media Labs rebuilt digital presence for a Pune civil infrastructure firm: 59K+ LinkedIn impressions, 85+ GMB reviews, 5 platforms managed.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              )}
+              <div className={active.title === "Impact Infraheights Pvt Ltd" ? "hidden" : ""}>
                 <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">What we did</div>
-                <p className="mt-2 text-navy-soft leading-relaxed">
-                  We rebuilt the messaging architecture, refreshed the creative system, and set up a disciplined testing loop across the full funnel. Reporting was consolidated into a single weekly view, so decisions were made on evidence, not opinions. The team kept doing what they do best while the concierge handled everything else end to end.
-                </p>
+                <div className="mt-4 space-y-6">
+                  <p className="text-navy-soft leading-relaxed text-justify sm:text-left">
+                    We built Ekvira's brand foundation end to end — tagline, website copy, brochure, WhatsApp CTAs for buyers and suppliers, and Meta campaign strategy across Ganesh idol export and textile B2B verticals. We structured product positioning across six categories and set up zero-cost lead capture automation. The founders stayed focused on trade while we handled everything else.
+                  </p>
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Services tags</div>
+                    <p className="mt-2 text-navy-soft leading-relaxed text-justify sm:text-left">
+                      Brand Strategy, Website Direction, Content Strategy, Creative Direction, WhatsApp Automation, Performance Marketing
+                    </p>
+                  </div>
+                  <div>
+                    <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">SEO meta description</div>
+                    <p className="mt-2 text-navy-soft leading-relaxed text-justify sm:text-left">
+                      How Perspective Media Labs built brand and marketing infrastructure for a new Pune import export firm — generating a $12,000 first order.
+                    </p>
+                  </div>
+                </div>
               </div>
             </div>
 
@@ -813,7 +889,7 @@ function Field({ label, name, type = "text", placeholder }: { label: string; nam
 
 function Footer() {
   return (
-    <footer className="py-3 bg-background">
+    <footer id="footer" className="py-3 bg-background">
       <div className="hidden">
         <div>
           <div className="flex items-center gap-3">
@@ -852,13 +928,33 @@ function Footer() {
 /* ---------- WhatsApp widget ---------- */
 
 function WhatsAppWidget() {
+  const [footerVisible, setFooterVisible] = useState(false);
+
+  useEffect(() => {
+    const sections = [document.getElementById("contact"), document.getElementById("footer")]
+      .filter((section): section is HTMLElement => section !== null);
+    const visibleSections = new Set<Element>();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) visibleSections.add(entry.target);
+        else visibleSections.delete(entry.target);
+      });
+      setFooterVisible(visibleSections.size > 0);
+    });
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <a
       href="https://wa.me/918668411092"
       target="_blank"
       rel="noreferrer"
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full grid place-items-center text-white shadow-[var(--shadow-elegant)] hover:scale-110 transition-transform"
+      aria-hidden={!footerVisible}
+      tabIndex={footerVisible ? 0 : -1}
+      className={`fixed bottom-6 right-6 z-50 h-14 w-14 rounded-full grid place-items-center text-white shadow-[var(--shadow-elegant)] transition-[opacity,transform,visibility] duration-300 motion-reduce:transition-none ${footerVisible ? "visible translate-y-0 opacity-100 hover:scale-110" : "invisible translate-y-4 opacity-0 pointer-events-none"}`}
       style={{ background: "linear-gradient(135deg, #22c35e, #128c4a)" }}
     >
       <svg viewBox="0 0 24 24" aria-hidden="true" className="w-7 h-7 fill-current">
