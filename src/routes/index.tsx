@@ -719,6 +719,10 @@ function Portfolio() {
                     <p className="text-navy-soft leading-relaxed text-justify">
                       Perspective Media Labs built Rushivan Aagro's booking website from the ground up, with Razorpay payment integration, custom backend development, a cart system, and direct room booking. We designed their MEA expo collateral, a new visiting card and brochure, and revived their dormant social media with consistent posting - now running as their ongoing marketing concierge.
                     </p>
+                  ) : active.title === "Healing Waves Clinic" ? (
+                    <p className="text-navy-soft leading-relaxed text-justify">
+                      Perspective Media Labs stepped in as a full marketing concierge to build the entire operational and marketing foundation from the ground up. We created a booked leads tracking system across all four clinics, standardised TeleCRM workflows, wrote SOPs and JDs for every patient-facing role, and set up WhatsApp Business automation across all branches. We managed and audited both paid and organic agencies, conducted landing page and SEO audits, directed the LinkedIn content strategy for the founder's personal brand, and supported hiring across multiple clinic roles. RMO referral program was audited and a software tracking gap was independently resolved.
+                    </p>
                   ) : (
                     <p className="text-navy-soft leading-relaxed text-justify">
                       We built Ekvira's brand foundation end to end - tagline, website copy, brochure, WhatsApp CTAs for buyers and suppliers, and Meta campaign strategy across Ganesh idol export and textile B2B verticals. We structured product positioning across six categories and set up zero-cost lead capture automation. The founders stayed focused on trade while we handled everything else.
