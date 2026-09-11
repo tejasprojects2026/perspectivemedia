@@ -29,12 +29,18 @@ import {
 
 import founderImg from "@/assets/founder-tejas.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
-import case3 from "@/assets/case-3.jpg";
-import case4 from "@/assets/case-4.jpg";
 import case5 from "@/assets/case-5.jpg";
 import case6 from "@/assets/case-6.jpg";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(portfolioJsonLd),
+      },
+    ],
+  }),
   component: LandingPage,
 });
 
@@ -73,13 +79,39 @@ const serviceDetails: Record<string, string[]> = {
 };
 
 const cases = [
-  { img: "/case-ekvira-export-fit.png", tag: "Import Export Trade", industry: "Import Export Trade", title: "Ekvira Export House Pvt. Ltd.", scope: "Full brand, digital, and print communication built from zero for a new Indian merchant export trading firm.", metric: "Full brand, digital, and print communication built from zero", note: "for a new Indian merchant export trading firm.", stats: [{ v: "$15,000", l: "First B2B order value from a single Meta lead" }, { v: "₹224", l: "Average cost per lead — international B2B campaigns" }, { v: "$60,000+", l: "Estimated pipeline value built from qualified leads" }] },
-  { img: "/case-metryx-impact.png", tag: "Civil Infrastructure", industry: "Civil Infrastructure", title: "Impact Infraheights Pvt Ltd", scope: "Digital revival for a Pune civil engineering firm — brand, website, brochure, social media, and GMB.", metric: "60% cheaper qualified leads", note: "LinkedIn ABM + intent-based nurture", stats: [{ v: "59,731", l: "LinkedIn impressions generated in 12 months — organic, zero ad spend" }, { v: "+228.6%", l: "GMB growth year on year — real business intent, not vanity numbers" }, { v: "45K+", l: "Combined Meta organic reach — Facebook + Instagram in 10 months" }] },
-  { img: case3, tag: "F&B", industry: "Food & Beverage", title: "Cofact Cafés", scope: "Local SEO, creator-led launches, and community-first content across 12 cities.", metric: "12 cities, 40k community", note: "Local SEO + creator-led launches", stats: [{ v: "12 cities", l: "Simultaneous launches" }, { v: "40k+", l: "Community members" }, { v: "Local SEO", l: "Creator-led rollout" }] },
-  { img: case4, tag: "Fintech", industry: "Consumer Fintech", title: "Payloop", scope: "Full-funnel performance and app-store optimization for consumer fintech growth.", metric: "5× app installs QoQ", note: "Full-funnel performance + ASO", stats: [{ v: "5×", l: "App installs QoQ" }, { v: "60 days", l: "Optimization sprint" }, { v: "Full funnel", l: "Paid + ASO + lifecycle" }] },
+  { img: "/case-ekvira-export-fit.png", tag: "Import Export Trade", industry: "Import Export Trade", title: "Ekvira Export House Pvt. Ltd.", scope: "Full brand, digital, and print communication built from zero for a new Indian merchant export trading firm.", metric: "Full brand, digital, and print communication built from zero", note: "for a new Indian merchant export trading firm.", servicesTags: "Brand Strategy, Website Direction, Content Strategy, Creative Direction, WhatsApp Automation, Performance Marketing", seoMetaDescription: "How Perspective Media Labs built brand and marketing infrastructure for a new Pune import export firm - generating a $12,000 first order.", stats: [{ v: "$15,000", l: "First B2B order value from a single Meta lead" }, { v: "₹224", l: "Average cost per lead — international B2B campaigns" }, { v: "$60,000+", l: "Estimated pipeline value built from qualified leads" }] },
+  { img: "/case-metryx-impact.png", tag: "Civil Infrastructure", industry: "Civil Infrastructure", title: "Impact Infraheights Pvt Ltd", scope: "Digital revival for a Pune civil engineering firm — brand, website, brochure, social media, and GMB.", metric: "60% cheaper qualified leads", note: "LinkedIn ABM + intent-based nurture", servicesTags: "Social Media, Content Strategy, GMB Optimization, Creative Direction, Corporate Communication, LinkedIn Strategy, Website Direction, Brand Strategy", seoMetaDescription: "How Perspective Media Labs rebuilt digital presence for a Pune civil infrastructure firm: 59K+ LinkedIn impressions, 85+ GMB reviews, 5 platforms managed.", stats: [{ v: "59,731", l: "LinkedIn impressions generated in 12 months — organic, zero ad spend" }, { v: "+228.6%", l: "GMB growth year on year — real business intent, not vanity numbers" }, { v: "45K+", l: "Combined Meta organic reach — Facebook + Instagram in 10 months" }] },
+  { img: "/skill-spark-card.png", tag: "HR CONSULTANCY SERVICES", industry: "HR CONSULTANCY SERVICES", title: "Skill Spark Consulting", scope: "Brand launch for a PCMC placement firm - identity, trademark, website, and collateral built from zero.", metric: "Complete brand launch", note: "for a new PCMC based placement firm; identity, trademark, digital presence, and collateral built from zero.", servicesTags: "Brand Strategy, Creative Direction, Social Media, GMB Optimization, LinkedIn Strategy, Corporate Communication, SEO, Content Strategy", seoMetaDescription: "How PML launched a Pune placement firm's full brand: trademark, GMB, social, and a website now cited organically by ChatGPT - zero ad spend.", stats: [{ v: "418 Users", l: "Organic website traffic - zero paid advertising" }, { v: "Traffic Source: ChatGPT", l: "AI platforms driving 153 sessions unprompted" }, { v: "160 Sessions", l: "Google organic reach within months of going live" }] },
+  { img: "/rushivan-agro-card.png", tag: "AGRI-TOURISM", industry: "Consumer Fintech", title: "Rushivan Aagro", scope: "End-to-end digital build and marketing overhaul for a Pune-area farm stay and agri-tourism brand.", metric: "End-to-end digital build", note: "and marketing overhaul for a Pune-area farm stay and agri-tourism brand.", servicesTags: "Website Direction, Expo Branding, Creative Direction, Social Media, Performance Marketing, Digital Organization", seoMetaDescription: "Perspective Media Labs built a Razorpay-powered booking website, expo branding, and revived social media for Pune agri-tourism brand Rushivan Agro.", stats: [{ v: "5×", l: "App installs QoQ" }, { v: "60 days", l: "Optimization sprint" }, { v: "Full funnel", l: "Paid + ASO + lifecycle" }] },
   { img: case5, tag: "Manufacturing", industry: "Industrial Manufacturing", title: "Shreyas Industries", scope: "Technical SEO overhaul and long-form industrial content engine for B2B buyers.", metric: "1st page for 27 keywords", note: "Technical SEO + industrial content", stats: [{ v: "27", l: "Page-one keywords" }, { v: "180 days", l: "SEO program" }, { v: "Technical SEO", l: "Plus content engine" }] },
   { img: case6, tag: "Fashion D2C", industry: "Fashion & Apparel", title: "Onward Studios", scope: "Retention automation and email/SMS lifecycle for a repeat-purchase D2C brand.", metric: "42% repeat purchase rate", note: "Retention automation + email flows", stats: [{ v: "42%", l: "Repeat purchase rate" }, { v: "90 days", l: "Lifecycle rebuild" }, { v: "Retention", l: "Email + SMS automation" }] },
 ];
+
+const siteUrl = "https://perspective-ai-spark.lovable.app";
+const toAbsoluteUrl = (path: string) => (path.startsWith("http") ? path : `${siteUrl}${path}`);
+
+const portfolioJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Perspective Media Labs case studies",
+  itemListElement: cases.map((caseStudy, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    item: {
+      "@type": "CreativeWork",
+      name: caseStudy.title,
+      about: caseStudy.industry,
+      description: caseStudy.seoMetaDescription ?? caseStudy.scope,
+      keywords: caseStudy.servicesTags,
+      image: toAbsoluteUrl(caseStudy.img),
+      publisher: {
+        "@type": "Organization",
+        name: "Perspective Media Labs",
+        url: siteUrl,
+      },
+    },
+  })),
+};
 
 const ekviraScreenshots = [
   { src: "/ekvira-logo.png", alt: "Ekvira Export House logo" },
@@ -93,6 +125,20 @@ const impactScreenshots = [
   { src: "/impact-proof-excellence.png", alt: "Impact Infraheights proven excellence" },
   { src: "/impact-md-profile.png", alt: "Impact Infraheights managing director profile" },
   { src: "/impact-projects.png", alt: "Impact Infraheights project categories" },
+];
+
+const skillSparkScreenshots = [
+  { src: "/skill-spark-logo-full.png", alt: "Skill Spark Consulting logo" },
+  { src: "/skill-spark-popup-02.png", alt: "Skill Spark Consulting about section screenshot" },
+  { src: "/skill-spark-popup-03.png", alt: "Skill Spark Consulting employer section screenshot" },
+  { src: "/skill-spark-popup-04.png", alt: "Skill Spark Consulting employee section screenshot" },
+];
+
+const rushivanScreenshots = [
+  { src: "/rushivan-agro-logo-clear.png", alt: "Rushivan Aagro logo" },
+  { src: "/rushivan-agro-popup-02.png", alt: "Rushivan Aagro corporate gifting screenshot" },
+  { src: "/rushivan-agro-popup-03.png", alt: "Rushivan Aagro farm stay screenshot" },
+  { src: "/rushivan-agro-popup-04.png", alt: "Rushivan Aagro product shop screenshot" },
 ];
 
 const compare = [
@@ -250,7 +296,7 @@ function Hero() {
                 <span>Concierge dashboard</span><span>This week</span>
               </div>
               <div className="mt-4 font-serif text-3xl">₹4.8L saved · 2.1× ROAS</div>
-              <div className="mt-1 text-sm opacity-80">Auto-optimized across Meta, Google, LinkedIn</div>
+              <div className="mt-2 text-sm opacity-90">Strategy, brand, and execution - owned end to end.</div>
             </div>
             <div className="p-6 space-y-4">
               {[
@@ -263,9 +309,6 @@ function Hero() {
                   <span className={`font-semibold ${r.tone}`}>{r.v}</span>
                 </div>
               ))}
-              <div className="flex items-center gap-2 pt-2 text-xs text-muted-foreground">
-                <Bot className="w-4 h-4 text-primary" /> Optimized 14 minutes ago
-              </div>
             </div>
           </div>
         </div>
@@ -486,7 +529,7 @@ function Portfolio() {
   const [mobileCard, setMobileCard] = useState(0);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const active = openIdx !== null ? cases[openIdx] : null;
-  const activeScreenshots = active?.title === "Ekvira Export House Pvt. Ltd." ? ekviraScreenshots : active?.title === "Impact Infraheights Pvt Ltd" ? impactScreenshots : null;
+  const activeScreenshots = active?.title === "Ekvira Export House Pvt. Ltd." ? ekviraScreenshots : active?.title === "Impact Infraheights Pvt Ltd" ? impactScreenshots : active?.title === "Skill Spark Consulting" ? skillSparkScreenshots : active?.title === "Rushivan Aagro" ? rushivanScreenshots : null;
 
   useEffect(() => {
     if (active) {
@@ -522,18 +565,18 @@ function Portfolio() {
               key={c.title}
               type="button"
               onClick={() => setOpenIdx(i)}
-              style={i < 2 ? { display: "block", margin: 0, padding: 0, verticalAlign: "top", backgroundImage: `url(${c.img})`, backgroundPosition: "top center", backgroundRepeat: "no-repeat", backgroundSize: "100% auto" } : undefined}
+              style={i < 3 ? { display: "block", margin: 0, padding: 0, verticalAlign: "top", backgroundImage: `url(${c.img})`, backgroundPosition: "top center", backgroundRepeat: "no-repeat", backgroundSize: "100% auto" } : undefined}
               className={`group card-elevated self-start overflow-hidden p-0 align-top text-left w-full min-w-0 ${i === mobileCard ? "block" : "hidden md:block"}`}
             >
-              {i < 2 ? (
+              {i < 3 ? (
                 <div aria-hidden="true" className="w-full" style={{ aspectRatio: "1896 / 882" }} />
               ) : (
-                <img src={c.img} alt={c.title} loading="lazy" className="block w-full object-cover aspect-[4/3] transition-transform duration-500 group-hover:scale-105" />
+                <img src={c.img} alt={c.title} loading="lazy" className="block w-full object-cover aspect-[1896/882] transition-transform duration-500 group-hover:scale-105" />
               )}
-              <div className="px-6 py-4">
+              <div className="px-6 py-4 min-h-[168px] md:min-h-[176px]">
                 <div className="text-xs font-semibold uppercase tracking-widest text-primary-deep">{c.tag}</div>
                 <h3 className="mt-2 font-serif text-xl font-semibold text-navy">{c.title}</h3>
-                {i < 2 ? (
+                {i < 4 ? (
                   <p className="mt-3 text-base leading-relaxed text-navy-soft">{i === 0 ? `${c.metric} ${c.note}` : c.scope}</p>
                 ) : (
                   <>
@@ -591,16 +634,18 @@ function Portfolio() {
               <div className="flex gap-4 overflow-x-auto pb-2 -mx-2 px-2 snap-x snap-mandatory">
                 {activeScreenshots ? activeScreenshots.map((screenshot, index) => (
                   <div
-                    key={screenshot.src}
-      className={`shrink-0 w-72 md:w-80 overflow-hidden rounded-2xl border border-border snap-start ${active?.title === "Ekvira Export House Pvt. Ltd." && index === 0 ? "bg-[#ffb719]" : active?.title === "Impact Infraheights Pvt Ltd" && index === 0 ? "bg-white" : "bg-surface"}`}
+                    key={screenshot.src || `blank-${index}`}
+      className={`shrink-0 w-72 md:w-80 overflow-hidden rounded-2xl border border-border snap-start ${active?.title === "Ekvira Export House Pvt. Ltd." && index === 0 ? "bg-[#ffb719]" : (active?.title === "Impact Infraheights Pvt Ltd" || active?.title === "Skill Spark Consulting" || active?.title === "Rushivan Aagro") && index === 0 ? "bg-white" : "bg-surface"}`}
                     style={{ aspectRatio: "16 / 9" }}
                   >
-                    <img
-                      src={screenshot.src}
-                      alt={screenshot.alt}
-                      loading="lazy"
-                      className="block h-full w-full object-contain"
-                    />
+                    {screenshot.src && (
+                      <img
+                        src={screenshot.src}
+                        alt={screenshot.alt}
+                        loading="lazy"
+                        className="block h-full w-full object-contain"
+                      />
+                    )}
                   </div>
                 )) : [1, 2, 3, 4].map((n) => (
                   <div key={n} className="shrink-0 w-72 h-44 rounded-2xl bg-gradient-to-br from-surface to-accent/40 border border-border grid place-items-center text-sm text-muted-foreground">
@@ -613,9 +658,9 @@ function Portfolio() {
             <div className="p-8 md:p-10 border-b border-border">
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 {active.stats.map((s) => (
-                  <div key={s.l} className="rounded-2xl border border-border bg-surface p-6">
-                    <div className="font-serif text-3xl font-semibold text-primary-deep">{s.v}</div>
-                    <div className="mt-1 text-sm text-navy-soft">{s.l}</div>
+                  <div key={s.l} className="rounded-2xl border border-border bg-surface p-5">
+                    <div className={`font-serif font-semibold leading-tight text-primary-deep ${s.v.length > 18 ? "text-2xl" : "text-3xl"}`}>{s.v}</div>
+                    <div className="mt-2 text-sm leading-snug text-navy-soft">{s.l}</div>
                   </div>
                 ))}
               </div>
@@ -632,8 +677,12 @@ function Portfolio() {
               )}
               <div className={active.title === "Impact Infraheights Pvt Ltd" ? "hidden" : ""}>
                 <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">The challenge</div>
-                <p className="mt-2 text-navy-soft leading-relaxed text-justify sm:text-left">
-                  Ekvira Export House launched with zero brand infrastructure — no website, no positioning, no collateral. As a merchant trader, not a manufacturer, the firm needed communication that accurately represented its model while building credibility with experienced international buyers across the Middle East, UK, Australia, and beyond. Everything had to be built correctly from scratch, simultaneously, on a startup budget.
+                <p className="mt-2 text-navy-soft leading-relaxed text-justify">
+                  {active.title === "Skill Spark Consulting"
+                    ? "Skill Spark Consulting was entering one of Pune's most cluttered markets - career consulting and talent placement - with no brand identity, no digital infrastructure, and no business collateral. The founder brought deep government and industrial networks across the PCMC corridor but had nothing to present to a corporate HR head or job seeker. The business needed credible placement firm branding, a professional digital presence in the Pune recruitment market, and the full suite of tools to operate from day one."
+                    : active.title === "Rushivan Aagro"
+                      ? "Rushivan Aagro, a farm stay and agri-tourism property near Pune, had strong on-ground appeal but almost no digital footprint to match it. There was no way for guests to browse rooms or pay online, no consistent visiting card or brochure for trade shows and expos, and social media accounts sat dormant. For a growing agri-tourism brand competing for Pune-Mumbai weekend travelers, that gap meant word-of-mouth demand wasn't converting into an organized, always-on booking channel."
+                    : "Ekvira Export House launched with zero brand infrastructure - no website, no positioning, no collateral. As a merchant trader, not a manufacturer, the firm needed communication that accurately represented its model while building credibility with experienced international buyers across the Middle East, UK, Australia, and beyond. Everything had to be built correctly from scratch, simultaneously, on a startup budget."}
                 </p>
               </div>
               {active.title === "Impact Infraheights Pvt Ltd" && (
@@ -643,39 +692,30 @@ function Portfolio() {
                     <p className="text-navy-soft leading-relaxed text-justify">
                       Perspective Media Labs took full charge as a marketing concierge partner - handling brand communication end to end across every touchpoint. We revived and rebranded their presence across LinkedIn, Facebook, Instagram, and Google Business Profile - updating information, writing bios, building posting cadence, and managing the MD's personal LinkedIn handle alongside the firm page. We designed a professional digital and printed brochure, executed a project site photo shoot, and produced a three-fold brochure for their participation in MEA Expo, Pune. We managed the website, handled domain and email hosting, and updated all listing platforms including JustDial and AmbitionBox. Google reviews grew to 85+ with a consistent positive sentiment. The team at Impact Infraheights focused on building. We handled everything else.
                     </p>
-                    <div>
-                      <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Services tags</div>
-                      <p className="mt-2 text-navy-soft leading-relaxed text-justify">
-                        Social Media, Content Strategy, GMB Optimization, Creative Direction, Corporate Communication, LinkedIn Strategy, Website Direction, Brand Strategy
-                      </p>
-                    </div>
-                    <div>
-                      <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">SEO meta description</div>
-                      <p className="mt-2 text-navy-soft leading-relaxed text-justify">
-                        How Perspective Media Labs rebuilt digital presence for a Pune civil infrastructure firm: 59K+ LinkedIn impressions, 85+ GMB reviews, 5 platforms managed.
-                      </p>
-                    </div>
                   </div>
                 </div>
               )}
               <div className={active.title === "Impact Infraheights Pvt Ltd" ? "hidden" : ""}>
                 <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">What we did</div>
                 <div className="mt-4 space-y-6">
-                  <p className="text-navy-soft leading-relaxed text-justify sm:text-left">
-                    We built Ekvira's brand foundation end to end — tagline, website copy, brochure, WhatsApp CTAs for buyers and suppliers, and Meta campaign strategy across Ganesh idol export and textile B2B verticals. We structured product positioning across six categories and set up zero-cost lead capture automation. The founders stayed focused on trade while we handled everything else.
-                  </p>
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Services tags</div>
-                    <p className="mt-2 text-navy-soft leading-relaxed text-justify sm:text-left">
-                      Brand Strategy, Website Direction, Content Strategy, Creative Direction, WhatsApp Automation, Performance Marketing
+                  {active.title === "Skill Spark Consulting" ? (
+                    <>
+                      <p className="text-navy-soft leading-relaxed text-justify">
+                        Perspective Media Labs built the entire brand from zero. We evaluated and approved the brand name, directed the logo through multiple design rounds to a trademarked final mark under Class 35, and locked a Navy and Gold premium colour palette positioned to compete with established consulting firms. We created all brand collateral - letterhead, visiting cards, envelope, and candidate intake forms for both general and IT talent profiles. Digital infrastructure covered GMB setup, LinkedIn company page, Facebook and Instagram pages with SEO-optimised bios, founder LinkedIn profile, Company profile PPT, and office branding.
+                      </p>
+                      <p className="text-navy-soft leading-relaxed text-justify">
+                        The result: a brand that Google indexes organically, social platforms that drive referral traffic, and a website that ChatGPT cites unprompted to anyone asking about recruitment in Pune - all without a single rupee in paid advertising. The founder focused on building his placement network while we handled every brand and communication touchpoint end to end.
+                      </p>
+                    </>
+                  ) : active.title === "Rushivan Aagro" ? (
+                    <p className="text-navy-soft leading-relaxed text-justify">
+                      Perspective Media Labs built Rushivan Aagro's booking website from the ground up, with Razorpay payment integration, custom backend development, a cart system, and direct room booking. We designed their MEA expo collateral, a new visiting card and brochure, and revived their dormant social media with consistent posting - now running as their ongoing marketing concierge.
                     </p>
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">SEO meta description</div>
-                    <p className="mt-2 text-navy-soft leading-relaxed text-justify sm:text-left">
-                      How Perspective Media Labs built brand and marketing infrastructure for a new Pune import export firm — generating a $12,000 first order.
+                  ) : (
+                    <p className="text-navy-soft leading-relaxed text-justify">
+                      We built Ekvira's brand foundation end to end - tagline, website copy, brochure, WhatsApp CTAs for buyers and suppliers, and Meta campaign strategy across Ganesh idol export and textile B2B verticals. We structured product positioning across six categories and set up zero-cost lead capture automation. The founders stayed focused on trade while we handled everything else.
                     </p>
-                  </div>
+                  )}
                 </div>
               </div>
             </div>
