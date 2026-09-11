@@ -142,6 +142,9 @@ const rushivanScreenshots = [
 
 const healingWavesScreenshots = [
   { src: "/healing-waves-logo.png", alt: "Healing Waves Clinic logo" },
+  { src: "/healing-waves-popup-02.png", alt: "Healing Waves e-STARR protocol steps screenshot" },
+  { src: "/healing-waves-popup-03.png", alt: "Healing Waves focused shockwave therapy screenshot" },
+  { src: "/healing-waves-popup-04.png", alt: "Healing Waves Clinic about section screenshot" },
 ];
 
 const compare = [
