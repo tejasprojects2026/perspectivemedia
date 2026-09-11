@@ -638,7 +638,7 @@ function Portfolio() {
                 {activeScreenshots ? activeScreenshots.map((screenshot, index) => (
                   <div
                     key={screenshot.src || `blank-${index}`}
-      className={`shrink-0 w-72 md:w-80 overflow-hidden rounded-2xl border border-border snap-start ${active?.title === "Ekvira Export House Pvt. Ltd." && index === 0 ? "bg-[#ffb719]" : (active?.title === "Impact Infraheights Pvt Ltd" || active?.title === "Skill Spark Consulting" || active?.title === "Rushivan Aagro") && index === 0 ? "bg-white" : "bg-surface"}`}
+      className={`shrink-0 w-72 md:w-80 overflow-hidden rounded-2xl border border-border snap-start ${active?.title === "Ekvira Export House Pvt. Ltd." && index === 0 ? "bg-[#ffb719]" : active?.title === "Healing Waves Clinic" && index === 0 ? "bg-[#2f373a]" : (active?.title === "Impact Infraheights Pvt Ltd" || active?.title === "Skill Spark Consulting" || active?.title === "Rushivan Aagro") && index === 0 ? "bg-white" : "bg-surface"}`}
                     style={{ aspectRatio: "16 / 9" }}
                   >
                     {screenshot.src && (
