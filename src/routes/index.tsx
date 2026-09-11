@@ -140,6 +140,10 @@ const rushivanScreenshots = [
   { src: "/rushivan-agro-popup-04.png", alt: "Rushivan Aagro product shop screenshot" },
 ];
 
+const healingWavesScreenshots = [
+  { src: "/healing-waves-logo.png", alt: "Healing Waves Clinic logo" },
+];
+
 const compare = [
   {
     key: "cost",
@@ -528,7 +532,7 @@ function Portfolio() {
   const [mobileCard, setMobileCard] = useState(0);
   const [openIdx, setOpenIdx] = useState<number | null>(null);
   const active = openIdx !== null ? cases[openIdx] : null;
-  const activeScreenshots = active?.title === "Ekvira Export House Pvt. Ltd." ? ekviraScreenshots : active?.title === "Impact Infraheights Pvt Ltd" ? impactScreenshots : active?.title === "Skill Spark Consulting" ? skillSparkScreenshots : active?.title === "Rushivan Aagro" ? rushivanScreenshots : null;
+  const activeScreenshots = active?.title === "Ekvira Export House Pvt. Ltd." ? ekviraScreenshots : active?.title === "Impact Infraheights Pvt Ltd" ? impactScreenshots : active?.title === "Skill Spark Consulting" ? skillSparkScreenshots : active?.title === "Rushivan Aagro" ? rushivanScreenshots : active?.title === "Healing Waves Clinic" ? healingWavesScreenshots : null;
 
   useEffect(() => {
     if (active) {
