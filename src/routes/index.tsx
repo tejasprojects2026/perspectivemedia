@@ -575,7 +575,7 @@ function Portfolio() {
               <div className="px-6 py-4 min-h-[168px] md:min-h-[176px]">
                 <div className="text-xs font-semibold uppercase tracking-widest text-primary-deep">{c.tag}</div>
                 <h3 className="mt-2 font-serif text-xl font-semibold text-navy">{c.title}</h3>
-                {i < 4 ? (
+                {i < 5 ? (
                   <p className="mt-3 text-base leading-relaxed text-navy-soft">{i === 0 ? `${c.metric} ${c.note}` : c.scope}</p>
                 ) : (
                   <>
