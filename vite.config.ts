@@ -7,6 +7,7 @@
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
 export default defineConfig({
+  nitro: { preset: "vercel" },
   vite: {
     server: { port: 8080, strictPort: true },
     preview: { port: 8080, strictPort: true },
